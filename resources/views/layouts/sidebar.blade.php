@@ -13,7 +13,7 @@
                 data-accordion="false">
 
             <li class="nav-item">
-                <a href="{{ url('/data-bayi') }}" class="nav-link {{ request()->is('/data-bayi') ? 'active' : '' }}">
+                <a href="{{ url('data-bayi') }}" class="nav-link {{ request()->is('data-bayi') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-baby"></i>
                     <p>Data Bayi</p>
                 </a>

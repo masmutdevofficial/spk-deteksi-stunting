@@ -18,13 +18,16 @@ class DataBayi extends Model
         'jenis_kelamin',
         'berat',
         'tinggi',
-        'lila',
-        'nilai_bb_tb',
-        'hasil_bb_tb',
+        'lila'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function hasilPerhitungan()
+    {
+        return $this->hasOne(HasilPerhitungan::class, 'id_bayi');
     }
 }

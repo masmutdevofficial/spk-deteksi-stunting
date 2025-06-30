@@ -42,8 +42,17 @@ return new class extends Migration
             $table->decimal('berat', 5, 2);
             $table->decimal('tinggi', 5, 2);
             $table->decimal('lila', 5, 2);
-            $table->decimal('nilai_bb_tb', 5, 2);
-            $table->string('hasil_bb_tb', 255);
+            $table->timestamps();
+        });
+
+        Schema::create('hasil_perhitungan', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('id_bayi')->constrained('data_bayi')->onDelete('cascade');
+            $table->decimal('gizi_baik', 10, 5)->nullable();
+            $table->decimal('gizi_cukup', 10, 5)->nullable();
+            $table->decimal('gizi_kurang', 10, 5)->nullable();
+            $table->decimal('z_score', 10, 2)->nullable();
+            $table->enum('status', ['Gizi Baik', 'Gizi Cukup', 'Gizi Kurang'])->nullable();
             $table->timestamps();
         });
 

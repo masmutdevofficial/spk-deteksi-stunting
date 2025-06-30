@@ -28,3 +28,5 @@ Route::delete('jadwal-penimbangan/{id}', [JadwalPenimbanganController::class, 'd
 
 Route::get('status-gizi', [StatusGiziController::class, 'index'])->name('status-gizi.index');
 Route::get('konsultasi', [KonsultasiController::class, 'index'])->name('konsultasi.index');
+
+Route::get('perhitungan', [DataBayiController::class, 'perhitungan'])->name('perhitungan.index');

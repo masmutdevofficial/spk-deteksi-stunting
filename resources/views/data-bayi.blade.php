@@ -12,12 +12,12 @@
 @section('content-header')
 <div class="row mb-2">
     <div class="col-sm-6">
-        <h1>Data Kriteria</h1>
+        <h1>Data Bayi</h1>
     </div>
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-            <li class="breadcrumb-item active">Data Kriteria</li>
+            <li class="breadcrumb-item active">Data Bayi</li>
         </ol>
     </div>
 </div>
@@ -45,8 +45,6 @@
                     <th>Berat</th>
                     <th>Tinggi</th>
                     <th>LILA</th>
-                    <th>BB/TB</th>
-                    <th>Hasil BB/TB</th>
                     <th>User</th>
                     <th>Aksi</th>
                 </tr>
@@ -61,8 +59,6 @@
                     <td>{{ $d->berat }}</td>
                     <td>{{ $d->tinggi }}</td>
                     <td>{{ $d->lila }}</td>
-                    <td>{{ $d->nilai_bb_tb }}</td>
-                    <td>{{ $d->hasil_bb_tb }}</td>
                     <td>{{ $d->user->nama ?? '-' }}</td>
                     <td>
                         <div class="d-flex justify-content-center">
@@ -116,15 +112,7 @@
                                         <input type="number" step="0.01" name="lila" value="{{ $d->lila }}" class="form-control" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label>Nilai BB/TB</label>
-                                        <input type="number" step="0.01" name="nilai_bb_tb" value="{{ $d->nilai_bb_tb }}" class="form-control" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>Hasil BB/TB</label>
-                                        <input type="text" name="hasil_bb_tb" value="{{ $d->hasil_bb_tb }}" class="form-control" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>User</label>
+                                        <label>Tenaga Medis</label>
                                         <select name="id_user" class="form-control">
                                             @foreach($users as $u)
                                             <option value="{{ $u->id }}" {{ $d->id_user == $u->id ? 'selected' : '' }}>{{ $u->nama }}</option>
@@ -208,15 +196,7 @@
                         <input type="number" step="0.01" name="lila" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label>Nilai BB/TB</label>
-                        <input type="number" step="0.01" name="nilai_bb_tb" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label>Hasil BB/TB</label>
-                        <input type="text" name="hasil_bb_tb" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label>User</label>
+                        <label>Tenaga Medis</label>
                         <select name="id_user" class="form-control">
                             @foreach($users as $u)
                             <option value="{{ $u->id }}">{{ $u->nama }}</option>
