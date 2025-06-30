@@ -12,54 +12,48 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
 
-                <li class="nav-item">
-                    <a href="{{ url('/') }}" class="nav-link {{ request()->is('/') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a href="{{ url('/data-bayi') }}" class="nav-link {{ request()->is('/data-bayi') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-baby"></i>
+                    <p>Data Bayi</p>
+                </a>
+            </li>
 
-                <li class="nav-item">
-                    <a href="{{ url('data-kriteria') }}" class="nav-link {{ request()->is('data-kriteria') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-list-alt"></i>
-                        <p>Data Kriteria</p>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a href="{{ url('status-gizi') }}" class="nav-link {{ request()->is('status-gizi') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-weight"></i>
+                    <p>Status Gizi</p>
+                </a>
+            </li>
 
-                <li class="nav-item">
-                    <a href="{{ url('data-siswa') }}" class="nav-link {{ request()->is('data-siswa') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-user-graduate"></i>
-                        <p>Data Siswa</p>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a href="{{ url('jadwal-kegiatan') }}" class="nav-link {{ request()->is('jadwal-kegiatan') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-calendar-alt"></i>
+                    <p>Jadwal Kegiatan</p>
+                </a>
+            </li>
 
-                <li class="nav-item">
-                    <a href="{{ url('data-user') }}" class="nav-link {{ request()->is('data-user') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-users-cog"></i>
-                        <p>Data User</p>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a href="{{ url('jadwal-penimbangan') }}" class="nav-link {{ request()->is('jadwal-penimbangan') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-hand-holding-medical"></i>
+                    <p>Jadwal Penimbangan</p>
+                </a>
+            </li>
 
-                <li class="nav-item">
-                    <a href="{{ url('penilaian') }}" class="nav-link {{ request()->is('penilaian') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-clipboard-check"></i>
-                        <p>Penilaian</p>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a href="{{ url('konsultasi') }}" class="nav-link {{ request()->is('konsultasi') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-comments"></i>
+                    <p>Konsultasi</p>
+                </a>
+            </li>
 
-                <li class="nav-item">
-                    <a href="{{ url('hasil-penilaian') }}" class="nav-link {{ request()->is('hasil-penilaian') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-chart-line"></i>
-                        <p>Hasil Penilaian</p>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a href="{{ url('hasil-deteksi') }}" class="nav-link {{ request()->is('hasil-deteksi') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-notes-medical"></i>
+                    <p>Hasil Penilaian</p>
+                </a>
+            </li>
 
-                <li class="nav-item">
-                    <a href="{{ url('grafik-kriteria') }}" class="nav-link {{ request()->is('grafik-kriteria') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-chart-pie"></i>
-                        <p>Grafik Kriteria</p>
-                    </a>
-                </li>
 
             </ul>
         </nav>
