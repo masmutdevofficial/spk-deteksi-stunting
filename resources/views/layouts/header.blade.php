@@ -15,8 +15,6 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('assets/css/adminlte.min.css') }}">
 
-    <!-- CUSTOM CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     @yield('customCss')
 </head>
 

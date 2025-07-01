@@ -180,3 +180,13 @@
     </div>
 </div>
 @endsection
+@section('bodyJs')
+<script src="{{ asset('assets/js/tex-mml-chtml.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (window.MathJax) {
+            MathJax.typesetPromise();
+        }
+    });
+</script>
+@endsection

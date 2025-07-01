@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\DataBayi;
+use Carbon\Carbon;
 
 class DataBayiSeeder extends Seeder
 {
@@ -32,6 +33,7 @@ class DataBayiSeeder extends Seeder
                 'tinggi' => $item['tinggi'],
                 'lila' => $item['lila'],
                 'bb_tb' => $item['bb_tb'],
+                'tgl_penimbangan' => Carbon::create(2025, 1, rand(1, 30))->toDateString(),
             ]);
         }
     }

@@ -19,7 +19,8 @@ class DataBayi extends Model
         'berat',
         'tinggi',
         'lila',
-        'bb_tb'
+        'bb_tb',
+        'tgl_penimbangan'
     ];
 
     public function user()
@@ -27,8 +28,9 @@ class DataBayi extends Model
         return $this->belongsTo(User::class, 'id_user');
     }
 
-    public function hasilPerhitungan()
+    public function penanganan()
     {
-        return $this->hasOne(HasilPerhitungan::class, 'id_bayi');
+        return $this->hasOne(Penanganan::class, 'data_bayi_id');
     }
+
 }
