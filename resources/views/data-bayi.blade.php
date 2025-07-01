@@ -29,9 +29,11 @@
         <div class="d-flex justify-content-between align-items-center">
             <h3 class="card-title">Data Bayi</h3>
             <div class="d-flex flex-col justify-content-between align-items-center">
-
-                <a href="perhitungan" class="btn btn-primary">
+                <a href="perhitungan" class="btn btn-primary mr-2">
                     <i class="fa fa-calculator mr-2"></i>Lihat Perhitungan
+                </a>
+                <a href="/cetak-laporan-pdf" class="btn btn-secondary mr-2">
+                    <i class="fa fa-print mr-2"></i>Cetak Laporan
                 </a>
             </div>
         </div>

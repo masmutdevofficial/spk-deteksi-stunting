@@ -22,6 +22,8 @@ Route::post('/logout',              [LoginController::class,'logout'])->name('lo
 
 Route::middleware('cekLogin')->group(function () {
     Route::get('data-bayi', [DataBayiController::class, 'index'])->name('data-bayi.index');
+    Route::get('cetak-laporan-pdf', [DataBayiController::class, 'cetakLaporanPdf'])->name('data-bayi.cetakLaporanPdf');
+
     Route::post('data-bayi', [DataBayiController::class, 'store'])->name('data-bayi.store');
     Route::put('data-bayi/{id}', [DataBayiController::class, 'update'])->name('data-bayi.update');
     Route::post('data-bayi-medis', [DataBayiController::class, 'storeMedis'])->name('data-bayi-medis.store');

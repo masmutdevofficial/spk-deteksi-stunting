@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\DataBayi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DataBayiController extends Controller
 {
@@ -319,5 +320,16 @@ class DataBayiController extends Controller
         return view('perhitungan', compact('mean', 'stdDev', 'hasil', 'naive', 'likelihoods', 'akurasi'));
     }
 
+    public function cetakLaporanPdf()
+    {
+        $data  = DataBayi::with('user')->get();
+        $users = User::where('level', 1)->get();
+
+        // view 'laporan-bayi-pdf' akan dirender jadi PDF
+        $pdf = Pdf::loadView('laporan-bayi-pdf', compact('data','users'))
+                  ->setPaper('a4', 'landscape');   // optional orientation
+
+        return $pdf->download('laporan-bayi.pdf');
+    }
 
 }
