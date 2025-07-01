@@ -42,6 +42,7 @@ return new class extends Migration
             $table->decimal('berat', 5, 2);
             $table->decimal('tinggi', 5, 2);
             $table->decimal('lila', 5, 2);
+            $table->string('bb_tb', 255)->nullable();
             $table->timestamps();
         });
 

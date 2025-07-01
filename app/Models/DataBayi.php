@@ -18,7 +18,8 @@ class DataBayi extends Model
         'jenis_kelamin',
         'berat',
         'tinggi',
-        'lila'
+        'lila',
+        'bb_tb'
     ];
 
     public function user()

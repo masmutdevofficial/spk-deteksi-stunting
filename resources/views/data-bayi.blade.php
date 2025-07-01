@@ -28,9 +28,14 @@
     <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
             <h3 class="card-title">Data Bayi</h3>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">
-                <i class="fa fa-plus mr-2"></i>Tambah Data
-            </button>
+            <div class="d-flex flex-col justify-content-between align-items-center">
+                <button class="btn btn-primary mr-2" data-toggle="modal" data-target="#modalTambah">
+                    <i class="fa fa-plus mr-2"></i>Tambah Data
+                </button>
+                <a href="perhitungan" class="btn btn-primary">
+                    <i class="fa fa-calculator mr-2"></i>Lihat Perhitungan
+                </a>
+            </div>
         </div>
     </div>
 
@@ -45,6 +50,7 @@
                     <th>Berat</th>
                     <th>Tinggi</th>
                     <th>LILA</th>
+                    <th>BB/TB</th>
                     <th>User</th>
                     <th>Aksi</th>
                 </tr>
@@ -59,6 +65,7 @@
                     <td>{{ $d->berat }}</td>
                     <td>{{ $d->tinggi }}</td>
                     <td>{{ $d->lila }}</td>
+                    <td>{{ $d->bb_tb }}</td>
                     <td>{{ $d->user->nama ?? '-' }}</td>
                     <td>
                         <div class="d-flex justify-content-center">
@@ -110,6 +117,14 @@
                                     <div class="mb-3">
                                         <label>LILA (cm)</label>
                                         <input type="number" step="0.01" name="lila" value="{{ $d->lila }}" class="form-control" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>BB/TB</label>
+                                        <select name="jenis_kelamin" class="form-control">
+                                            <option value="Gizi Baik" {{ $d->jenis_kelamin === 'Gizi Baik' ? 'selected' : '' }}>Gizi Baik</option>
+                                            <option value="Gizi Kurang" {{ $d->jenis_kelamin === 'Gizi Kurang' ? 'selected' : '' }}>Gizi Kurang</option>
+                                            <option value="Gizi Lebih" {{ $d->jenis_kelamin === 'Gizi Lebih' ? 'selected' : '' }}>Gizi Lebih</option>
+                                        </select>
                                     </div>
                                     <div class="mb-3">
                                         <label>Tenaga Medis</label>
@@ -194,6 +209,14 @@
                     <div class="mb-3">
                         <label>LILA (cm)</label>
                         <input type="number" step="0.01" name="lila" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>BB/TB</label>
+                        <select name="jenis_kelamin" class="form-control">
+                            <option value="Gizi Baik">Gizi Baik</option>
+                            <option value="Gizi Kurang">Gizi Kurang</option>
+                            <option value="Gizi Lebih">Gizi Lebih</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label>Tenaga Medis</label>
