@@ -14,21 +14,21 @@
                 <input type="hidden" name="id_bayi" value="{{ request('id') }}">
 
                 <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" name="penanganan[]" value="Pemantauan pertumbuhan berkala" id="check1">
+                    <input class="form-check-input" type="checkbox" name="keterangan[]" value="Pemantauan pertumbuhan berkala" id="check1">
                     <label class="form-check-label" for="check1">
                         Pemantauan pertumbuhan berkala
                     </label>
                 </div>
 
                 <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" name="penanganan[]" value="Pemberian Suplementasi dan vitamin" id="check2">
+                    <input class="form-check-input" type="checkbox" name="keterangan[]" value="Pemberian Suplementasi dan vitamin" id="check2">
                     <label class="form-check-label" for="check2">
                         Pemberian Suplementasi dan vitamin
                     </label>
                 </div>
 
                 <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" name="penanganan[]" value="Konseling perkembangan anak" id="check3">
+                    <input class="form-check-input" type="checkbox" name="keterangan[]" value="Konseling perkembangan anak" id="check3">
                     <label class="form-check-label" for="check3">
                         Konseling perkembangan anak
                     </label>

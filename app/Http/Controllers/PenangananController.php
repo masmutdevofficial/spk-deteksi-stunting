@@ -17,12 +17,13 @@ class PenangananController extends Controller
     {
         $request->validate([
             'id_bayi' => 'required|exists:data_bayi,id',
-            'keterangan' => 'required|string',
+            'keterangan' => 'required|array',
+            'keterangan.*' => 'string', // validasi tiap item dalam array
         ]);
 
         Penanganan::updateOrCreate(
             ['data_bayi_id' => $request->id_bayi],
-            ['keterangan' => $request->keterangan]
+            ['keterangan' => implode(', ', $request->keterangan)] // gabungkan array jadi string
         );
 
         return redirect('/konsultasi')->with('success', 'Penanganan berhasil disimpan.');
