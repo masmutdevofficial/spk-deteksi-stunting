@@ -15,6 +15,7 @@ class DataBayi extends Model
         'id_user',
         'nama',
         'umur',
+        'tgl_lahir',
         'jenis_kelamin',
         'berat',
         'tinggi',

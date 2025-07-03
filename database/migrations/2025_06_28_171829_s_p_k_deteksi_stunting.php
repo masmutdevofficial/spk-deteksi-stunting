@@ -38,6 +38,7 @@ return new class extends Migration
             $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
             $table->string('nama', 255);
             $table->string('umur', 255);
+            $table->date('tgl_lahir');
             $table->tinyInteger('jenis_kelamin')->comment('1=L, 2=P');
             $table->decimal('berat', 5, 2);
             $table->decimal('tinggi', 5, 2);

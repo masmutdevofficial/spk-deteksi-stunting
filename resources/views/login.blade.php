@@ -9,6 +9,10 @@
 @include('layouts.alerts')
 
 <div class="login-box">
+  <div class="text-center mb-3">
+    <h5><strong>SISTEM PAKAR DETEKSI DINI STATUS STUNTING BALITA<br>MENGGUNAKAN METODE NAÏVE BAYES</strong></h5>
+  </div>
+
   <div class="card">
     <div class="card-body text-center">
       <h4>Pilih Jenis Login</h4>

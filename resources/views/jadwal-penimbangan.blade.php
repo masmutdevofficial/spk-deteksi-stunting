@@ -14,9 +14,14 @@
     <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
             <h3 class="card-title">Jadwal Penimbangan</h3>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">
+            <div class="d-flex flex-col justify-content-between align-items-center">
+            <button class="btn btn-primary mr-2" data-toggle="modal" data-target="#modalTambah">
                 <i class="fa fa-plus mr-2"></i>Tambah Data
             </button>
+                <a href="/cetak-jadwal-penimbangan" class="btn btn-secondary mr-2">
+                    <i class="fa fa-print mr-2"></i>Cetak Laporan
+                </a>
+            </div>
         </div>
     </div>
 

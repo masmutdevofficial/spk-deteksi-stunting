@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\JadwalPenimbangan;
 
 class JadwalPenimbanganController extends Controller
@@ -44,4 +45,15 @@ class JadwalPenimbanganController extends Controller
         JadwalPenimbangan::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Jadwal penimbangan berhasil dihapus');
     }
+
+    public function cetak()
+    {
+        $data = JadwalPenimbangan::all();
+
+        $pdf = Pdf::loadView('cetak-jadwal-penimbangan', compact('data'))
+                ->setPaper('a4', 'landscape');
+
+        return $pdf->download('jadwal-penimbangan.pdf');
+    }
+
 }

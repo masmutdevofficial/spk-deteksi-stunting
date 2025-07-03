@@ -21,6 +21,7 @@ class DataBayiController extends Controller
             'id_user' => 'required|exists:users,id',
             'nama' => 'required',
             'umur' => 'required',
+            'tgl_lahir' => 'required|date',
             'jenis_kelamin' => 'required|in:1,2',
             'berat' => 'required|numeric',
             'tinggi' => 'required|numeric',
@@ -49,6 +50,7 @@ class DataBayiController extends Controller
             'id_user' => 'required|exists:users,id',
             'nama' => 'required',
             'umur' => 'required',
+            'tgl_lahir' => 'required|date',
             'jenis_kelamin' => 'required|in:1,2',
             'berat' => 'required|numeric',
             'tinggi' => 'required|numeric',
@@ -77,6 +79,7 @@ class DataBayiController extends Controller
             'id_user' => 'required|exists:users,id',
             'nama' => 'required',
             'umur' => 'required',
+            'tgl_lahir' => 'required|date',
             'jenis_kelamin' => 'required|in:1,2',
             'berat' => 'required|numeric',
             'tinggi' => 'required|numeric',
@@ -146,6 +149,7 @@ class DataBayiController extends Controller
             'id_user' => $request->id_user,
             'nama' => $request->nama,
             'umur' => $request->umur,
+            'tgl_lahir' => $request->tgl_lahir,
             'jenis_kelamin' => $request->jenis_kelamin,
             'berat' => $berat,
             'tinggi' => $tinggi,
@@ -332,4 +336,59 @@ class DataBayiController extends Controller
         return $pdf->download('laporan-bayi.pdf');
     }
 
+    public function cetakDetailBayiPdf(Request $request)
+    {
+        $bayi = DataBayi::findOrFail($request->id);
+        $namaBayi = $bayi->nama;
+
+        // Ambil semua data kecuali data ini
+        $dataLain = DataBayi::where('id', '!=', $bayi->id)->get();
+        $total = $dataLain->count();
+
+        $naive = $dataLain->groupBy('bb_tb')->map(function ($grp) use ($total) {
+            $cnt = $grp->count();
+            $prior = $cnt / ($total ?: 1);
+            $stat = [];
+
+            foreach (['berat', 'tinggi', 'lila'] as $f) {
+                $mean = $grp->avg($f);
+                $std = sqrt($grp->pluck($f)->map(fn($v) => pow($v - $mean, 2))->sum() / ($cnt - 1 ?: 1));
+                $std = max($std, 1.0);
+                $stat[$f] = ['mean' => $mean, 'std' => $std];
+            }
+
+            return [
+                'prior'  => $prior,
+                'berat'  => $stat['berat'],
+                'tinggi' => $stat['tinggi'],
+                'lila'   => $stat['lila'],
+            ];
+        });
+
+        $gaussian = function ($x, $mean, $std) {
+            if ($std == 0) return 0;
+            $exponent = exp(-pow($x - $mean, 2) / (2 * pow($std, 2)));
+            return (1 / (sqrt(2 * pi()) * $std)) * $exponent;
+        };
+
+        $likelihoods = [];
+        foreach ($naive as $status => $stats) {
+            $p_berat = $gaussian($bayi->berat,  $stats['berat']['mean'],  $stats['berat']['std']);
+            $p_tinggi = $gaussian($bayi->tinggi, $stats['tinggi']['mean'], $stats['tinggi']['std']);
+            $p_lila = $gaussian($bayi->lila,  $stats['lila']['mean'],  $stats['lila']['std']);
+
+            $likelihoods[$status] = $p_berat * $p_tinggi * $p_lila * $stats['prior'];
+        }
+
+        $prediksi = collect($likelihoods)->sortDesc()->keys()->first();
+
+        $pdf = Pdf::loadView('cetak-detail-bayi', [
+            'bayi'        => $bayi,
+            'prediksi'    => $prediksi,
+            'likelihoods' => $likelihoods,
+            'namaBayi'    => $namaBayi,
+        ])->setPaper('a4', 'portrait');
+
+        return $pdf->download('detail-bayi-' . $bayi->id . '.pdf');
+    }
 }

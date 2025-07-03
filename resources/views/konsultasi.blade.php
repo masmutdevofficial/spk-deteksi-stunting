@@ -17,8 +17,13 @@
             </div>
 
             <div class="mb-3">
+                <label>Tanggal Lahir</label>
+                <input type="date" name="tgl_lahir" class="form-control tgl-lahir" required>
+            </div>
+
+            <div class="mb-3">
                 <label>Umur</label>
-                <input type="text" name="umur" class="form-control" placeholder="Contoh : 2 Tahun - 1 Bulan - 5 Hari" required>
+                <input type="text" name="umur" class="form-control umur-field" placeholder="Contoh : 2 Tahun - 1 Bulan - 5 Hari" readonly required>
             </div>
 
             <div class="mb-3">
@@ -55,4 +60,40 @@
     </div>
 
 </div>
+@endsection
+
+@section('bodyJs')
+<script>
+    function hitungUmur(tglLahir) {
+        const tgl = new Date(tglLahir);
+        const now = new Date();
+
+        let tahun = now.getFullYear() - tgl.getFullYear();
+        let bulan = now.getMonth() - tgl.getMonth();
+        let hari = now.getDate() - tgl.getDate();
+
+        if (hari < 0) {
+            bulan--;
+            const daysInLastMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+            hari += daysInLastMonth;
+        }
+
+        if (bulan < 0) {
+            tahun--;
+            bulan += 12;
+        }
+
+        return `${tahun} Tahun - ${bulan} Bulan - ${hari} Hari`;
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const tglInput = document.querySelector('.tgl-lahir');
+        const umurField = document.querySelector('.umur-field');
+
+        tglInput.addEventListener('change', function () {
+            const umur = hitungUmur(this.value);
+            umurField.value = umur;
+        });
+    });
+</script>
 @endsection

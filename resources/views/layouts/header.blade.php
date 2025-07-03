@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title ?? 'ADMIN LTE' }}</title>
+    <title>{{ $title ?? 'SISTEM PAKAR DETEKSI DINI STATUS STUNTING BALITA MENGGUNAKAN METODE NAÏVE BAYES' }}</title>
 
     <!-- REQUIRED CSS -->
     <!-- Google Font: Source Sans Pro -->

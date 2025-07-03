@@ -69,6 +69,9 @@
                     <td>{{ $d->tgl_penimbangan }}</td>
                     <td>
                         <div class="d-flex justify-content-center">
+                            <a href="cetak-detail-bayi?id={{ $d->id }}" class="btn btn-sm btn-secondary mr-2">
+                                <i class="fa fa-print mr-1"></i>Cetak
+                            </a>
                             <button class="btn btn-sm btn-warning mr-2" data-toggle="modal" data-target="#modalEdit{{ $d->id }}">
                                 <i class="fa fa-edit mr-1"></i>Edit
                             </button>
@@ -96,8 +99,12 @@
                                         <input type="text" name="nama" value="{{ $d->nama }}" class="form-control" required>
                                     </div>
                                     <div class="mb-3">
+                                        <label>Tanggal Lahir</label>
+                                        <input type="date" name="tgl_lahir" value="{{ $d->tgl_lahir }}" class="form-control tgl-lahir" required>
+                                    </div>
+                                    <div class="mb-3">
                                         <label>Umur</label>
-                                        <input type="text" name="umur" value="{{ $d->umur }}" class="form-control" required>
+                                        <input type="text" name="umur" value="{{ $d->umur }}" class="form-control umur-field" readonly required>
                                     </div>
                                     <div class="mb-3">
                                         <label>Jenis Kelamin</label>
@@ -176,69 +183,6 @@
     </div>
 </div>
 
-<!-- Modal Tambah -->
-<div class="modal fade" id="modalTambah" tabindex="-1">
-    <div class="modal-dialog">
-        <form action="{{ url('data-bayi') }}" method="POST">
-            @csrf
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Tambah Data Bayi</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label>Nama</label>
-                        <input type="text" name="nama" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label>Umur</label>
-                        <input type="text" name="umur" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label>Jenis Kelamin</label>
-                        <select name="jenis_kelamin" class="form-control">
-                            <option value="1">Laki-laki</option>
-                            <option value="2">Perempuan</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label>Berat (kg)</label>
-                        <input type="number" step="0.01" name="berat" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label>Tinggi (cm)</label>
-                        <input type="number" step="0.01" name="tinggi" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label>LILA (cm)</label>
-                        <input type="number" step="0.01" name="lila" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label>BB/TB</label>
-                        <select name="bb_tb" class="form-control">
-                            <option value="Gizi Baik">Gizi Baik</option>
-                            <option value="Gizi Kurang">Gizi Kurang</option>
-                            <option value="Gizi Lebih">Gizi Lebih</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label>Tenaga Medis</label>
-                        <select name="id_user" class="form-control">
-                            @foreach($users as $u)
-                            <option value="{{ $u->id }}">{{ $u->nama }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
 @endsection
 
 @section('customJs')
@@ -267,5 +211,39 @@
         "lengthMenu": [ [5, 10, 25, 50, 100], [5, 10, 25, 50, 100] ]
     });
   });
+</script>
+<script>
+    function hitungUmur(tanggalLahir) {
+        const tglLahir = new Date(tanggalLahir);
+        const sekarang = new Date();
+
+        let tahun = sekarang.getFullYear() - tglLahir.getFullYear();
+        let bulan = sekarang.getMonth() - tglLahir.getMonth();
+        let hari = sekarang.getDate() - tglLahir.getDate();
+
+        if (hari < 0) {
+            bulan -= 1;
+            hari += new Date(sekarang.getFullYear(), sekarang.getMonth(), 0).getDate(); // ambil jumlah hari di bulan sebelumnya
+        }
+
+        if (bulan < 0) {
+            tahun -= 1;
+            bulan += 12;
+        }
+
+        return `${tahun} Tahun - ${bulan} Bulan - ${hari} Hari`;
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.tgl-lahir').forEach(function (input) {
+            input.addEventListener('change', function () {
+                const umurField = this.closest('.modal-body').querySelector('.umur-field');
+                const umur = hitungUmur(this.value);
+                if (umurField) {
+                    umurField.value = umur;
+                }
+            });
+        });
+    });
 </script>
 @endsection

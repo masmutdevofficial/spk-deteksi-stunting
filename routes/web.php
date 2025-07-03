@@ -23,6 +23,7 @@ Route::post('/logout',              [LoginController::class,'logout'])->name('lo
 Route::middleware('cekLogin')->group(function () {
     Route::get('data-bayi', [DataBayiController::class, 'index'])->name('data-bayi.index');
     Route::get('cetak-laporan-pdf', [DataBayiController::class, 'cetakLaporanPdf'])->name('data-bayi.cetakLaporanPdf');
+    Route::get('/cetak-detail-bayi', [DataBayiController::class, 'cetakDetailBayiPdf']);
 
     Route::post('data-bayi', [DataBayiController::class, 'store'])->name('data-bayi.store');
     Route::put('data-bayi/{id}', [DataBayiController::class, 'update'])->name('data-bayi.update');
@@ -38,6 +39,9 @@ Route::middleware('cekLogin')->group(function () {
     Route::post('jadwal-penimbangan', [JadwalPenimbanganController::class, 'store'])->name('jadwal-penimbangan.store');
     Route::put('jadwal-penimbangan/{id}', [JadwalPenimbanganController::class, 'update'])->name('jadwal-penimbangan.update');
     Route::delete('jadwal-penimbangan/{id}', [JadwalPenimbanganController::class, 'destroy'])->name('jadwal-penimbangan.destroy');
+    Route::get('cetak-jadwal-kegiatan', [JadwalKegiatanController::class, 'cetak'])->name('jadwal-kegiatan.cetak');
+    Route::get('cetak-jadwal-penimbangan', [JadwalPenimbanganController::class, 'cetak'])->name('jadwal-penimbangan.cetak');
+
 
     Route::get('status-gizi', [StatusGiziController::class, 'index'])->name('status-gizi.index');
     Route::get('konsultasi', [KonsultasiController::class, 'index'])->name('konsultasi.index');
