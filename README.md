@@ -75,7 +75,7 @@ Aplikasi ini digunakan untuk mendeteksi dini status gizi balita berdasarkan data
     ```bash
     composer install
     ```
-4. Copy file `.env`:
+4. Copy file `.env.example` dan ubah menjadi `.env`:
     ```bash
     .env.example .env
     ```
