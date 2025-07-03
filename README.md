@@ -36,7 +36,6 @@ Aplikasi ini digunakan untuk mendeteksi dini status gizi balita berdasarkan data
 
 ![Hasil Deteksi 1](tampilan_hasil_deteksi_1.png)
 ![Hasil Deteksi 2](tampilan_hasil_deteksi_2.png)
-![Hasil Deteksi 3](tampilan_hasil_deteksi_3.png)
 
 ## ⚙️ Persyaratan Sistem
 
