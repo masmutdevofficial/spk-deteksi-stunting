@@ -38,6 +38,13 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="{{ url('penanganan-gizi') }}" class="nav-link {{ request()->is('penanganan-gizi') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-pills"></i>
+                            <p>Penanganan Gizi</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="{{ url('jadwal-kegiatan') }}" class="nav-link {{ request()->is('jadwal-kegiatan') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-calendar-alt"></i>
                             <p>Jadwal Kegiatan</p>

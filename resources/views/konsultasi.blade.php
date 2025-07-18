@@ -64,17 +64,17 @@
 
 @section('bodyJs')
 <script>
-    function hitungUmur(tglLahir) {
-        const tgl = new Date(tglLahir);
-        const now = new Date();
+    function hitungUmur(tglLahir, tglKonsultasi) {
+        const lahir = new Date(tglLahir);
+        const konsultasi = new Date(tglKonsultasi);
 
-        let tahun = now.getFullYear() - tgl.getFullYear();
-        let bulan = now.getMonth() - tgl.getMonth();
-        let hari = now.getDate() - tgl.getDate();
+        let tahun = konsultasi.getFullYear() - lahir.getFullYear();
+        let bulan = konsultasi.getMonth() - lahir.getMonth();
+        let hari = konsultasi.getDate() - lahir.getDate();
 
         if (hari < 0) {
             bulan--;
-            const daysInLastMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+            const daysInLastMonth = new Date(konsultasi.getFullYear(), konsultasi.getMonth(), 0).getDate();
             hari += daysInLastMonth;
         }
 
@@ -87,13 +87,23 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        const tglInput = document.querySelector('.tgl-lahir');
+        const tglLahirInput = document.querySelector('.tgl-lahir');
+        const tglKonsultasiInput = document.querySelector('[name="tgl_penimbangan"]');
         const umurField = document.querySelector('.umur-field');
 
-        tglInput.addEventListener('change', function () {
-            const umur = hitungUmur(this.value);
-            umurField.value = umur;
-        });
+        function updateUmur() {
+            const tglLahir = tglLahirInput.value;
+            const tglKonsultasi = tglKonsultasiInput.value;
+
+            if (tglLahir && tglKonsultasi) {
+                umurField.value = hitungUmur(tglLahir, tglKonsultasi);
+            } else {
+                umurField.value = '';
+            }
+        }
+
+        tglLahirInput.addEventListener('change', updateUmur);
+        tglKonsultasiInput.addEventListener('change', updateUmur);
     });
 </script>
 @endsection

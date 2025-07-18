@@ -8,6 +8,7 @@ use App\Http\Controllers\StatusGiziController;
 use App\Http\Controllers\JadwalKegiatanController;
 use App\Http\Controllers\JadwalPenimbanganController;
 use App\Http\Controllers\PenangananController;
+use App\Http\Controllers\PenangananGiziController;
 
 Route::middleware('sudahLogin')->group(function () {
     Route::get('/', [LoginController::class,'chooseRole'])->name('login.choose');
@@ -42,6 +43,8 @@ Route::middleware('cekLogin')->group(function () {
     Route::get('cetak-jadwal-kegiatan', [JadwalKegiatanController::class, 'cetak'])->name('jadwal-kegiatan.cetak');
     Route::get('cetak-jadwal-penimbangan', [JadwalPenimbanganController::class, 'cetak'])->name('jadwal-penimbangan.cetak');
 
+    Route::get('penanganan-gizi', [PenangananGiziController::class, 'index'])->name('penanganan-gizi.index');
+    Route::get('cetak-penanganan-gizi', [PenangananGiziController::class, 'cetakPenangananGizi'])->name('cetak-penanganan-gizi.index');
 
     Route::get('status-gizi', [StatusGiziController::class, 'index'])->name('status-gizi.index');
     Route::get('konsultasi', [KonsultasiController::class, 'index'])->name('konsultasi.index');
